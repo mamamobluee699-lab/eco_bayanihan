@@ -5,3 +5,4 @@ bootstrap4==0.0.1
 django-jazzmin
 gunicorn
 whitenoise
+Pillow
