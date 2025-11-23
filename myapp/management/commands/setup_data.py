@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from myapp.models import Volunteer, CleanupEvent
+from myapp.models import Participant, CleanupEvent
 from datetime import datetime, timedelta
 
 class Command(BaseCommand):
@@ -12,30 +12,35 @@ class Command(BaseCommand):
             User.objects.create_superuser('admin', 'admin@ecobayanihan.com', 'admin123')
             self.stdout.write('✅ Admin user created: admin/admin123')
 
-        # Create test volunteer
-        if not Volunteer.objects.filter(email='test@example.com').exists():
-            volunteer = Volunteer.objects.create(
-                first_name='Test',
-                last_name='User',
+        # Create test participant
+        if not Participant.objects.filter(email='test@example.com').exists():
+            participant = Participant.objects.create(
+                fullname='Test User',
+                username='testuser',
                 email='test@example.com',
-                phone='09123456789',
-                address='Test Address',
-                age=25,
-                gender='Male'
+                contact_number='09123456789',
+                address='Test Address, Manila',
+                birthdate=datetime(1998, 1, 1).date()
             )
-            self.stdout.write('✅ Test volunteer created: test@example.com')
+            participant.set_password('test123')
+            participant.save()
+            self.stdout.write('✅ Test participant created: test@example.com / test123')
 
         # Create sample cleanup event
         if not CleanupEvent.objects.filter(name='Beach Cleanup Drive').exists():
             event = CleanupEvent.objects.create(
                 name='Beach Cleanup Drive',
                 description='Join us for a community beach cleanup to protect marine life.',
-                location='Manila Bay',
+                place='beach',
+                specific_location='Manila Bay, Roxas Boulevard',
                 date=datetime.now().date() + timedelta(days=7),
-                time=datetime.now().time().replace(hour=8, minute=0),
+                start_time=datetime.now().time().replace(hour=8, minute=0),
+                duration=4,
                 max_participants=50,
-                points_reward=10
+                points=15
             )
             self.stdout.write('✅ Sample event created: Beach Cleanup Drive')
 
         self.stdout.write('🌿 Setup complete! You can now login.')
+        self.stdout.write('Admin: admin/admin123')
+        self.stdout.write('Participant: test@example.com/test123')
