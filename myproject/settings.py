@@ -121,13 +121,23 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # DATABASE
 # ============================================
 
-# Database configuration - using SQLite for now
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Database configuration - use PostgreSQL on Render, SQLite locally
+import os
+
+if 'DATABASE_URL' in os.environ:
+    # Use PostgreSQL on Render
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(default='postgres://localhost')
     }
-}
+else:
+    # Use SQLite for local development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # ============================================
 # PASSWORD VALIDATION
