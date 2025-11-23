@@ -272,11 +272,24 @@
             background-color: var(--brand);
         }
         
+        .carousel-control-prev,
+        .carousel-control-next {
+            top: 50%;
+            transform: translateY(-50%);
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            background-color: rgba(46, 125, 50, 0.8);
+            border: none;
+            margin: auto 0;
+        }
+        
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
-            background-color: var(--brand);
+            background-color: white;
             border-radius: 50%;
-            padding: 20px;
+            width: 30px;
+            height: 30px;
         }
 
         /* 📱 Responsive Design - Maintain Layout */
@@ -306,6 +319,12 @@
             .carousel-item > div {
                 height: 300px !important;
             }
+            
+            .carousel-control-prev,
+            .carousel-control-next {
+                height: 50px;
+                width: 50px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -333,6 +352,12 @@
             
             .carousel-item > div {
                 height: 250px !important;
+            }
+            
+            .carousel-control-prev,
+            .carousel-control-next {
+                height: 40px;
+                width: 40px;
             }
         }
     </style>
