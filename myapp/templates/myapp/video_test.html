@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Test</title>
+    <style>
+        body { padding: 20px; font-family: Arial, sans-serif; }
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <h2>Video Test Page</h2>
+        
+        <h3>Test 1: Direct file path</h3>
+        <video width="100%" controls>
+            <source src="C:/Users/SAMSUNG/Desktop/ecobayanihan/myproject/myapp/static/ads.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p>Path: <code>C:/Users/SAMSUNG/Desktop/ecobayanihan/myproject/myapp/static/ads.mp4</code></p>
+        
+        <h3>Test 2: Static URL</h3>
+        <video width="100%" controls>
+            <source src="/static/ads.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p>Path: <code>/static/ads.mp4</code></p>
+        
+        <h3>Test 3: Full URL (if your server is running)</h3>
+        <video width="100%" controls>
+            <source src="http://localhost:8000/static/ads.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <p>URL: <code>http://localhost:8000/static/ads.mp4</code></p>
+    </div>
+    
+    <div style="margin-top: 30px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Make sure your video file is named exactly <code>ads.mp4</code></li>
+            <li>Place it in: <code>myproject/myapp/static/</code></li>
+            <li>Try opening this test page directly in your browser</li>
+            <li>Right-click each video and select "Save video as..." to test if the file is accessible</li>
+        </ol>
+    </div>
+</body>
+</html>

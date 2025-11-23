@@ -1,0 +1,45 @@
+/* This file contains the CSS styles for the application. */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: #b00020;
+    margin-top: 10px;
+}
+
+.success {
+    color: #4caf50;
+    margin-top: 10px;
+}

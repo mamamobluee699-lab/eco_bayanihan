@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>About EcoBayanihan | Clean Up Drive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    {% include 'myapp/_theme.html' %}
+    {% load static %}
+
+    <style>
+        :root {
+            --brand: #2e7d32;
+            --brand-dark: #1b5e20;
+            --accent: #8bc34a;
+            --sky: #81d4fa;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at top left, rgba(46,125,50,.1), transparent 60%),
+                        radial-gradient(circle at bottom right, rgba(129,212,250,.12), transparent 60%),
+                        #f7fbf8;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* 🌿 Navbar */
+        .navbar {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid var(--brand);
+            background: linear-gradient(90deg, var(--brand) 0%, #43a047 50%, #66bb6a 100%);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-size: 26px;
+            font-weight: bold;
+            color: #e8f5e9 !important;
+        }
+
+        .navbar-brand .nav-logo {
+            height: 60px;
+            width: auto;
+            margin-right: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 6px rgba(0,128,0,0.3);
+            object-fit: contain;
+        }
+
+        .btn-brand {
+            background: var(--brand);
+            border-color: var(--brand);
+        }
+
+        .btn-brand:hover {
+            background: var(--brand-dark);
+            border-color: var(--brand-dark);
+        }
+
+        .btn-login {
+            background-color: #2e7d32;
+            border-color: #2e7d32;
+        }
+
+        .btn-login:hover {
+            background-color: #1b5e20;
+            border-color: #1b5e20;
+        }
+
+        /* 🌿 Hero Section */
+        .hero {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(46,125,50,0.05) 0%, rgba(129,212,250,0.08) 100%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232e7d32' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero img {
+            width: 200px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #2e7d32;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 🌿 About Content */
+        .about-content {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--brand);
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #e8f5e9;
+            color: var(--brand);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+            border-image: linear-gradient(135deg, var(--brand), var(--accent)) 1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(46,125,50,0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--brand);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--brand);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px rgba(46,125,50,0.2);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: linear-gradient(180deg, var(--brand), transparent);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: var(--brand);
+            margin-bottom: 5px;
+        }
+
+        /* 🌿 Footer */
+        .footer-section {
+            background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 50%, #f3fbff 100%);
+            border-top: 3px solid var(--brand);
+            position: relative;
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand) 0%, var(--accent) 50%, var(--sky) 100%);
+        }
+
+        .footer-section .text-muted {
+            color: #6c757d !important;
+        }
+
+        .footer-section a:hover {
+            color: var(--brand) !important;
+            transition: color 0.3s ease;
+        }
+
+        /* 📱 Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container py-2">
+            <a class="navbar-brand" href="{% url 'myapp:home' %}">
+                <img src="{% static 'images/ecologo.png' %}" alt="Logo" class="nav-logo">
+                EcoBayanihan
+            </a>
+            <div class="d-flex gap-2">
+                <a class="btn btn-outline-light text-white" href="{% url 'myapp:about' %}">
+                    <i class="bi bi-info-circle me-1"></i> About
+                </a>
+                <a class="btn btn-brand text-white" href="{% url 'myapp:register' %}">
+                    <i class="bi bi-person-plus me-1"></i> Register
+                </a>
+                <a class="btn btn-login text-white" href="{% url 'myapp:volunteer_login' %}">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> Login
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 🌱 HERO SECTION -->
+    <header class="hero">
+        <div class="container">
+            <img src="{% static 'images/ecologo.png' %}" alt="EcoBayanihan Logo">
+            <h1>About EcoBayanihan</h1>
+            <p>Empowering communities to create lasting environmental change through collective action and volunteer engagement</p>
+        </div>
+    </header>
+
+    <!-- 🌿 ABOUT CONTENT -->
+    <section class="about-content">
+        <div class="container">
+            <!-- Mission Section -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Our Mission</h2>
+                    <p class="section-subtitle">To create a cleaner, healthier environment by mobilizing communities and fostering a culture of environmental stewardship</p>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Volunteers</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Cleanup Events</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">kg Waste Collected</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Communities</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Values -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Our Core Values</h2>
+                    <p class="section-subtitle">The principles that guide our environmental mission</p>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <h4 class="fw-semibold text-success mb-3">Community First</h4>
+                        <p class="text-muted">We believe in the power of collective action and community engagement to drive meaningful environmental change.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="bi bi-shield-check-fill"></i>
+                        </div>
+                        <h4 class="fw-semibold text-success mb-3">Sustainability</h4>
+                        <p class="text-muted">Our initiatives focus on long-term environmental solutions that benefit future generations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="bi bi-award-fill"></i>
+                        </div>
+                        <h4 class="fw-semibold text-success mb-3">Recognition</h4>
+                        <p class="text-muted">We celebrate and reward volunteers for their dedication to environmental conservation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Our Journey</h2>
+                    <p class="section-subtitle">Milestones in our environmental mission</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <h5 class="fw-semibold">EcoBayanihan Founded</h5>
+                        <p class="text-muted">Started with a small group of passionate volunteers committed to environmental cleanup.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <h5 class="fw-semibold">First Major Cleanup</h5>
+                        <p class="text-muted">Organized our first large-scale beach cleanup event with over 100 volunteers.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <h5 class="fw-semibold">Platform Launch</h5>
+                        <p class="text-muted">Launched our digital platform to streamline volunteer registration and event management.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <h5 class="fw-semibold">Community Expansion</h5>
+                        <p class="text-muted">Expanded to multiple communities across the Philippines with growing volunteer base.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌿 FOOTER -->
+    <footer class="footer-section py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{% static 'images/ecologo.png' %}" alt="EcoBayanihan Logo" style="height: 40px; margin-right: 10px;">
+                        <h5 class="mb-0 fw-bold text-success">EcoBayanihan</h5>
+                    </div>
+                    <p class="text-muted">
+                        A community-driven platform for environmental cleanup activities. Together, we make a difference one cleanup at a time.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-success text-decoration-none">
+                            <i class="bi bi-facebook fs-5"></i>
+                        </a>
+                        <a href="#" class="text-success text-decoration-none">
+                            <i class="bi bi-twitter fs-5"></i>
+                        </a>
+                        <a href="#" class="text-success text-decoration-none">
+                            <i class="bi bi-instagram fs-5"></i>
+                        </a>
+                        <a href="#" class="text-success text-decoration-none">
+                            <i class="bi bi-linkedin fs-5"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h6 class="fw-semibold text-success mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="{% url 'myapp:home' %}" class="text-muted text-decoration-none">
+                                <i class="bi bi-house me-2"></i>Home
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'myapp:about' %}" class="text-muted text-decoration-none">
+                                <i class="bi bi-info-circle me-2"></i>About
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'myapp:register' %}" class="text-muted text-decoration-none">
+                                <i class="bi bi-person-plus me-2"></i>Register
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="{% url 'myapp:volunteer_login' %}" class="text-muted text-decoration-none">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-semibold text-success mb-3">Contact Info</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="mailto:info@ecobayanihan.org" class="text-muted text-decoration-none">
+                                <i class="bi bi-envelope me-2"></i>info@ecobayanihan.org
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="tel:+639123456789" class="text-muted text-decoration-none">
+                                <i class="bi bi-telephone me-2"></i>+63 912 345 6789
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <span class="text-muted">
+                                <i class="bi bi-geo-alt me-2"></i>Philippines
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-semibold text-success mb-3">Newsletter</h6>
+                    <p class="text-muted mb-3">Subscribe to get updates on cleanup events and environmental news.</p>
+                    <form class="d-flex gap-2">
+                        <input type="email" class="form-control" placeholder="Your email" style="border-color: var(--accent);">
+                        <button type="submit" class="btn btn-brand text-white">
+                            <i class="bi bi-send"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(46,125,50,0.2);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-muted mb-0">© {% now 'Y' %} EcoBayanihan. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none me-3">Terms of Service</a>
+                    <a href="#" class="text-muted text-decoration-none">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

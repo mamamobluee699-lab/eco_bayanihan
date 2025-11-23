@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Registration Popup</title>
+</head>
+<body>
+    <h1>Test Registration Popup</h1>
+    
+    <!-- Registration Success Modal -->
+    <div id="registration-success-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+        background:#fff; padding:30px; border-radius:15px; box-shadow:0 8px 20px rgba(0,0,0,0.3); z-index:10000; max-width:500px; width:90%;">
+        <div style="text-align:center; margin-bottom:20px;">
+            <div style="font-size:3rem; color:#43a047;">✅</div>
+            <h2 style="color:#2e7d32; margin-bottom:10px;">Successfully Registered!</h2>
+            <p style="color:#666;">You have successfully pre-registered for the event:</p>
+        </div>
+        
+        <div id="event-details" style="background:#f8f9fa; padding:20px; border-radius:10px; margin-bottom:20px;">
+            <!-- Event details will be populated by JavaScript -->
+        </div>
+        
+        <button onclick="closeRegistrationModal()" style="display:block; width:100%; padding:12px; border:none; background:#43a047; color:white; border-radius:10px; font-weight:600; font-size:16px;">
+            Continue
+        </button>
+    </div>
+
+    <!-- Simulate registration data -->
+    <script id="registration_data" type="application/json">
+    {
+        "event_name": "Test Beach Cleanup",
+        "event_place": "Manila Bay",
+        "event_specific_location": "Roxas Boulevard",
+        "event_date": "December 15, 2024",
+        "event_start_time": "08:00 AM",
+        "event_duration": "3 hours",
+        "event_points": 50
+    }
+    </script>
+
+    <script>
+    // Check for registration success in session
+    window.addEventListener('load', function() {
+        // Check if there's a registration success message
+        const dataElement = document.getElementById('registration_data');
+        console.log('Looking for registration data element:', dataElement);
+        if (dataElement) {
+            try {
+                const successData = JSON.parse(dataElement.textContent);
+                console.log('Parsed success data:', successData);
+                showRegistrationSuccess(successData);
+            } catch (e) {
+                console.error('Error parsing event data:', e);
+            }
+        } else {
+            console.log('No registration data element found');
+        }
+    });
+
+    function showRegistrationSuccess(eventData) {
+        const modal = document.getElementById('registration-success-modal');
+        const detailsDiv = document.getElementById('event-details');
+        
+        // Populate event details
+        detailsDiv.innerHTML = `
+            <h3 style="color:#2e7d32; margin-bottom:15px;">${eventData.event_name}</h3>
+            <div style="display:grid; gap:10px;">
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="font-weight:600; color:#333;">📍 Place:</span>
+                    <span style="color:#666;">${eventData.event_place}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="font-weight:600; color:#333;">📍 Location:</span>
+                    <span style="color:#666;">${eventData.event_specific_location}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="font-weight:600; color:#333;">📅 Date:</span>
+                    <span style="color:#666;">${eventData.event_date}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="font-weight:600; color:#333;">🕐 Time:</span>
+                    <span style="color:#666;">${eventData.event_start_time}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="font-weight:600; color:#333;">⏱️ Duration:</span>
+                    <span style="color:#666;">${eventData.event_duration}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="font-weight:600; color:#333;">🏆 Points:</span>
+                    <span style="color:#43a047; font-weight:600;">${eventData.event_points} points</span>
+                </div>
+            </div>
+        `;
+        
+        // Show the modal
+        modal.style.display = 'block';
+    }
+
+    function closeRegistrationModal() {
+        const modal = document.getElementById('registration-success-modal');
+        modal.style.display = 'none';
+    }
+    </script>
+</body>
+</html>

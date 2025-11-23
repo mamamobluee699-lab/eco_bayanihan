@@ -1,0 +1,49 @@
+
+{% block title %}Confirm Deletion | EcoBayanihan Admin{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 600px; margin: 80px auto; background: #fff; padding: 40px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align:center;">
+    
+    <h2 style="color:#2e7d32; font-weight:600; margin-bottom:10px;">Confirm Deletion</h2>
+    <p style="color:#555; margin-bottom: 30px;">
+        Are you sure you want to delete 
+        <strong style="color:#1b5e20;">
+            {% if participant %}{{ participant.name }}{% elif event %}{{ event.name }}{% else %}this item{% endif %}
+        </strong>?
+    </p>
+
+    <div style="display:flex; justify-content:center; gap:20px;">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" style="
+                background-color:#d32f2f;
+                color:#fff;
+                border:none;
+                padding:12px 28px;
+                border-radius:8px;
+                font-size:16px;
+                font-weight:500;
+                cursor:pointer;
+                transition:background 0.3s;">
+                Delete
+            </button>
+        </form>
+
+        <a href="{% url 'myapp:custom_admin_panel' %}" style="
+            background-color:#388e3c;
+            color:white;
+            padding:12px 28px;
+            border-radius:8px;
+            text-decoration:none;
+            font-size:16px;
+            font-weight:500;
+            transition:background 0.3s;">
+            Cancel
+        </a>
+    </div>
+
+    <p style="margin-top: 25px; color:#999; font-size:14px;">
+        <em>⚠️ This action cannot be undone.</em>
+    </p>
+</div>
+{% endblock %}

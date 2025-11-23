@@ -1,0 +1,25 @@
+<h5>{{ participant.fullname }}'s Points History</h5>
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Points Earned</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if registrations %}
+            {% for reg in registrations %}
+            <tr>
+                <td>{{ reg.event.title }}</td>
+                <td>{{ reg.event.date|date:"M d, Y" }}</td>
+                <td>{{ reg.event.points }}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="3" class="text-center">No points history available.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>

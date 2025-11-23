@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EcoBayanihan Admin{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Simple CSS Styling -->
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f7f3;
+            color: #333;
+        }
+
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 24px;
+        }
+
+        nav {
+            background-color: #388e3c;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #2e7d32;
+            color: white;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        button, input[type="submit"] {
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: #1b5e20;
+        }
+
+        .success {
+            background-color: #c8e6c9;
+            padding: 10px;
+            border-left: 5px solid #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        .error {
+            background-color: #ffcdd2;
+            padding: 10px;
+            border-left: 5px solid #c62828;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🌿 EcoBayanihan Admin Dashboard</h1>
+    </header>
+
+    <nav>
+        <a href="{% url 'myapp:custom_admin_panel' %}">Dashboard</a>
+        <a href="{% url 'myapp:add_event' %}">Add Event</a>
+        <a href="{% url 'myapp:add_participant' %}">Add Participant</a>
+        <a href="/admin/">Django Admin</a>
+        <a href="{% url 'myapp:home' %}">Back to Home</a>
+    </nav>
+
+    <main>
+        {% block content %}
+        <!-- Page content goes here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        &copy; {{ now|date:"Y" }} EcoBayanihan — Built for a Greener Future 🌏
+    </footer>
+</body>
+</html>

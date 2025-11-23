@@ -1,0 +1,46 @@
+{% comment %} Shared theme styles and small UX enhancements {% endcomment %}
+<style>
+	:root{
+		--brand:#2e7d32; /* forest green */
+		--brand-dark:#1b5e20; /* deep green */
+		--accent:#8bc34a; /* light green */
+	}
+	.shadow-soft { box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+	.card { border: 0; border-radius: 14px; }
+	.btn-brand{ background: var(--brand); border-color: var(--brand); }
+	.btn-brand:hover{ background: var(--brand-dark); border-color: var(--brand-dark); }
+	.btn-animate { transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, border-color .15s ease; }
+	.btn-animate:hover { transform: translateY(-2px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); }
+	.form-control, .form-select { transition: box-shadow .15s ease, border-color .15s ease; }
+	.form-control:focus, .form-select:focus { border-color: var(--accent); box-shadow: 0 0 0 .2rem rgba(139,195,74,.25); }
+	.badge-live{ background: rgba(46,125,50,.12); color: var(--brand); border: 1px solid rgba(46,125,50,.25) }
+	/* Subtle link hover */
+	a.btn, a { transition: color .15s ease, background-color .15s ease, border-color .15s ease, transform .15s ease; }
+	a.btn:hover { transform: translateY(-1px); }
+</style>
+<script>
+	// Simple ripple effect for buttons
+	document.addEventListener('click', function(e){
+		const t = e.target.closest('button, .btn');
+		if(!t) return;
+		const r = document.createElement('span');
+		r.className = 'ripple';
+		r.style.position = 'absolute';
+		r.style.borderRadius = '50%';
+		r.style.transform = 'scale(0)';
+		r.style.opacity = '0.35';
+		r.style.background = '#fff';
+		r.style.pointerEvents = 'none';
+		const rect = t.getBoundingClientRect();
+		const size = Math.max(rect.width, rect.height);
+		r.style.width = r.style.height = size + 'px';
+		r.style.left = (e.clientX - rect.left - size/2) + 'px';
+		r.style.top = (e.clientY - rect.top - size/2) + 'px';
+		r.style.transition = 'transform .35s ease, opacity .6s ease';
+		t.style.position = 'relative';
+		t.style.overflow = 'hidden';
+		t.appendChild(r);
+		requestAnimationFrame(()=>{ r.style.transform = 'scale(2)'; r.style.opacity = '0'; });
+		setTimeout(()=> r.remove(), 650);
+	});
+</script>
