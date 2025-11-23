@@ -274,22 +274,31 @@
         
         .carousel-control-prev,
         .carousel-control-next {
+            position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            height: 60px;
-            width: 60px;
+            height: 40px;
+            width: 40px;
             border-radius: 50%;
-            background-color: rgba(46, 125, 50, 0.8);
-            border: none;
-            margin: auto 0;
+            background-color: rgba(46, 125, 50, 0.9);
+            border: 2px solid white;
+            z-index: 10;
+        }
+        
+        .carousel-control-prev {
+            left: 10px;
+        }
+        
+        .carousel-control-next {
+            right: 10px;
         }
         
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
             background-color: white;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
         }
 
         /* 📱 Responsive Design - Maintain Layout */
@@ -322,8 +331,14 @@
             
             .carousel-control-prev,
             .carousel-control-next {
-                height: 50px;
-                width: 50px;
+                height: 35px;
+                width: 35px;
+            }
+            
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                width: 16px;
+                height: 16px;
             }
         }
 
@@ -356,8 +371,22 @@
             
             .carousel-control-prev,
             .carousel-control-next {
-                height: 40px;
-                width: 40px;
+                height: 30px;
+                width: 30px;
+            }
+            
+            .carousel-control-prev {
+                left: 5px;
+            }
+            
+            .carousel-control-next {
+                right: 5px;
+            }
+            
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                width: 14px;
+                height: 14px;
             }
         }
     </style>
